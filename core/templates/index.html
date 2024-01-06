@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head_title %}Library{% endblock %}
+{% block content %}
+    <div class="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
+        <div class="flex flex-col w-full lg:w-1/2 ">
+            <ul class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                {% for cat in categories %}
+                    <a href="{% url 'CatSlug' cat.slug %}">
+                        <li class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600 cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-800">
+                            {{ cat.name }}
+                        </li>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="w-full grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {% for book in books %}
+                <div class="max-w-sm bg-white mx-2 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <a href="#">
+                        <img class="rounded-t-lg w-full"
+                             src="{{ book.image.url }}"
+                             alt="{{ book.image.url }}"
+                             style="max-height: 30rem" />
+                    </a>
+                    <div class="p-5">
+                        <a href="#">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ book.title }}</h5>
+                        </a>
+                        {% for cat in book.category.all %}<p class="font-semibold">{{ cat.name }}</p>{% endfor %}
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ book.description }}</p>
+                        <a href="{% url 'BookD' book.id %}"
+                           class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Read more
+                            <svg class="rtl:rotate-180 w-4 ml-2 h-3.5 ms-2"
+                                 aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 fill="none"
+                                 viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div></div>
+{% endblock %}
