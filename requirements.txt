@@ -16,3 +16,4 @@ setuptools
 sqlparse
 wheel
 dj_database_url
+psycopg2-binary
