@@ -5,7 +5,6 @@ boto3
 botocore
 Brotli
 bson
-btrfsutil
 CacheControl
 cachetools
 certifi
