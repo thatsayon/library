@@ -1,6 +1,5 @@
 alembic
 annotated-types
-anyio
 apparmor
 appdirs
 argon2
